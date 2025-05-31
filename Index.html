@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">A Special Message for Sneha Rathore</title> <meta name="description" content="A heartfelt and personal message for Sneha Rathore. Read this special proposal."> <style>
+        /* General Body Styles */
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+            transition: background 1s ease-in-out; /* Smooth background transition */
+        }
+
+        /* Page 1: Landing Page Styles */
+        #landingPage {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .heart-button {
+            width: 150px;
+            height: 150px;
+            background-color: #e21c3b; /* Red heart */
+            position: relative;
+            transform: rotate(-45deg);
+            cursor: pointer;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+            animation: beat 1.2s infinite; /* Heartbeat animation */
+            transition: transform 0.2s ease-in-out;
+            border-radius: 5%; /* Make it heart before pseudo-elements */
+        }
+
+        .heart-button::before,
+        .heart-button::after {
+            content: '';
+            width: 150px;
+            height: 150px;
+            background-color: #e21c3b;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .heart-button::before {
+            top: -75px;
+            left: 0;
+        }
+
+        .heart-button::after {
+            top: 0;
+            left: 75px;
+        }
+
+        .heart-button:active {
+            transform: rotate(-45deg) scale(0.95); /* Slight scale down on click */
+        }
+
+        @keyframes beat {
+            0% { transform: rotate(-45deg) scale(1); }
+            15% { transform: rotate(-45deg) scale(1.05); }
+            30% { transform: rotate(-45deg) scale(1); }
+            45% { transform: rotate(-45deg) scale(1.05); }
+            60% { transform: rotate(-45deg) scale(1); }
+            100% { transform: rotate(-45deg) scale(1); }
+        }
+
+        .heart-button:hover {
+            opacity: 0.9;
+        }
+
+        .click-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg); /* Counter-rotate text */
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            pointer-events: none; /* Make sure text doesn't interfere with click */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: pulseText 1.2s infinite;
+        }
+
+        @keyframes pulseText {
+            0% { transform: translate(-50%, -50%) rotate(45deg) scale(1); }
+            50% { transform: translate(-50%, -50%) rotate(45deg) scale(1.05); }
+            100% { transform: translate(-50%, -50%) rotate(45deg) scale(1); }
+        }
+
+        /* Page 2: Proposal Page Styles */
+        #proposalPage {
+            background: linear-gradient(to right, #a18cd1, #fbc2eb);
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .message-box {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            animation: fadeIn 1.5s ease-out;
+            font-family: 'Georgia', serif;
+            color: #4a4a4a;
+            /* Added for top alignment */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Align content to the top */
+            height: auto; /* Allow height to adjust to content */
+            overflow-y: auto; /* Add scroll if content overflows */
+        }
+
+        #proposalPage h1 {
+            color: #e21c3b;
+            font-size: 2.8em;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        #proposalPage p {
+            font-size: 1.4em;
+            line-height: 1.6;
+            margin-bottom: 1em; /* Adjusted margin for better flow */
+            color: #555;
+        }
+
+        /* Specifically target the first paragraph to remove its top margin */
+        #proposalPage .message-box p:first-of-type {
+            margin-top: 0;
+        }
+
+        /* Adjust the last paragraph's margin before buttons to maintain spacing */
+        #proposalPage .message-box p:last-of-type {
+             margin-bottom: 30px;
+        }
+
+
+        .buttons-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: auto; /* Push buttons to the bottom if content is short */
+        }
+
+        .button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .button.yes {
+            background-color: #28a745; /* Green for Yes */
+        }
+
+        .button.no {
+            background-color: #dc3545; /* Red for No */
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            opacity: 0.9;
+        }
+
+        /* Page 3: Yes/No Result Pages */
+        #yesPage, #noPage {
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        #yesPage {
+            background: linear-gradient(to right, #83a4d4, #b6fbff); /* Joyful blue gradient */
+            font-family: 'Comic Sans MS', cursive, sans-serif; /* A bit more playful for happiness */
+            color: #333;
+        }
+
+        #noPage {
+            background: linear-gradient(to right, #ece9e6, #ffffff); /* Soft, neutral background */
+            font-family: 'Open Sans', sans-serif;
+            color: #666;
+        }
+
+        .celebration-box, .sorry-box {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+            max-width: 700px;
+            animation: bounceIn 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sorry-box {
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            max-width: 550px;
+            animation: slideInUp 1s ease-out;
+        }
+
+        #yesPage h1 {
+            color: #28a745; /* Green for success */
+            font-size: 3.5em;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        #noPage h1 {
+            color: #555;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        #yesPage p {
+            font-size: 1.6em;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 30px;
+        }
+
+        #noPage p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        /* Confetti animation */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f0f;
+            top: -10px;
+            animation: fall 3s infinite;
+            opacity: 0;
+            border-radius: 50%;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* Create multiple confetti pieces */
+        .confetti:nth-child(2n) { background-color: #0ff; animation-delay: 0.5s; }
+        .confetti:nth-child(3n) { background-color: #ff0; animation-delay: 1s; }
+        .confetti:nth-child(4n) { background-color: #f00; animation-delay: 1.5s; }
+        .confetti:nth-child(5n) { background-color: #00f; animation-delay: 2s; }
+        .confetti:nth-child(6n) { background-color: #f0f; animation-delay: 2.5s; }
+        /* Add more as needed, adjusting left position */
+        .confetti:nth-child(1) { left: 10%; }
+        .confetti:nth-child(2) { left: 20%; }
+        .confetti:nth-child(3) { left: 30%; }
+        .confetti:nth-child(4) { left: 40%; }
+        .confetti:nth-child(5) { left: 50%; }
+        .confetti:nth-child(6) { left: 60%; }
+        .confetti:nth-child(7) { left: 70%; }
+        .confetti:nth-child(8) { left: 80%; }
+        .confetti:nth-child(9) { left: 90%; }
+
+        /* General Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="landingPage">
+        <div class="heart-button" onclick="showPage('proposalPage')">
+            <span class="click-text"></span>
+        </div>
+    </div>
+
+    <div id="proposalPage">
+        <div class="message-box">
+            <h1 id="proposalHeading">My Dearest Sneha,</h1>
+            <p id="proposalMessage">
+                From the very first moment I saw you, something in my heart whispered,<br>
+                “She’s the one.”<br><br>
+                Your smile lights up the dullest days,<br>
+                Your laughter feels like music to my soul,<br>
+                And your presence turns every ordinary moment into something magical.<br><br>
+                I’ve held back these feelings for a while,<br>
+                But today, I want to be honest—with you and with my heart.<br><br>
+                I like you. Deeply. Genuinely.<br><br>
+                Not just for how beautiful you are,<br>
+                But for your kindness, your strength, and the way you make the world around you better—just by being in it.<br><br>
+                So here I am, standing with a full heart, asking just one simple, sincere question:<br><br>
+                💖 Will you be mine? 💖<br><br>
+                Not just for today, but for all the adventures to come—<br>
+                For late-night talks, for shared dreams, for silly moments and serious ones too.<br><br>
+                Because you’re not just someone I like...<br>
+                You’re someone I want to create memories with.
+            </p>
+            <div class="buttons-container">
+                <button class="button yes" onclick="showPage('yesPage')">Yes!</button>
+                <button class="button no" onclick="showPage('noPage')">No, thank you.</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="yesPage">
+        <div class="celebration-box">
+            <h1>OMG! YES!!! 🎉</h1>
+            <p>I'm absolutely over the moon! You just made me the happiest person in the world! Thank you, Sneha! ❤️</p>
+            <p>Can't wait to see what amazing adventures we'll have together!</p>
+            <p>Let's celebrate! ✨</p>
+        </div>
+        <div class="confetti" style="left: 10%;"></div>
+        <div class="confetti" style="left: 25%; animation-delay: 0.8s;"></div>
+        <div class="confetti" style="left: 40%; animation-delay: 0.2s;"></div>
+        <div class="confetti" style="left: 55%; animation-delay: 1.2s;"></div>
+        <div class="confetti" style="left: 70%; animation-delay: 0.4s;"></div>
+        <div class="confetti" style="left: 85%; animation-delay: 1s;"></div>
+        <div class="confetti" style="left: 5%; animation-delay: 0.6s;"></div>
+        <div class="confetti" style="left: 95%; animation-delay: 1.4s;"></div>
+    </div>
+
+    <div id="noPage">
+        <div class="sorry-box">
+            <h1>I understand.</h1>
+            <p>Thank you for your honesty, Sneha. While my heart might feel a little heavy, I truly appreciate you being open and truthful.</p>
+            <p>My feelings for you won't change how much I value our friendship. I hope we can continue to be great friends.</p>
+            <p>Wishing you all the best. ❤️</p>
+        </div>
+    </div>
+
+    <script>
+        // Function to show a specific page and hide others
+        function showPage(pageId) {
+            const pages = ['landingPage', 'proposalPage', 'yesPage', 'noPage'];
+            const pageTitles = {
+                'landingPage': 'A Special Message for Sneha Rathore', // Consistent with initial title
+                'proposalPage': 'My Question for You, Sneha',
+                'yesPage': 'Yay! So Happy!',
+                'noPage': 'Understood'
+            };
+
+            pages.forEach(id => {
+                const page = document.getElementById(id);
+                if (page) {
+                    if (id === pageId) {
+                        page.style.display = 'flex'; // Show the target page
+                        setTimeout(() => page.style.opacity = 1, 10); // Fade in
+                    } else {
+                        page.style.opacity = 0; // Fade out other pages
+                        setTimeout(() => page.style.display = 'none', 500); // Hide after fade
+                    }
+                }
+            });
+
+            // Update the page title
+            document.getElementById('pageTitle').innerText = pageTitles[pageId];
+        }
+
+        // Initially show the landing page when the script loads
+        document.addEventListener('DOMContentLoaded', () => {
+            showPage('landingPage');
+        });
+    </script>
+</body>
+</html>
