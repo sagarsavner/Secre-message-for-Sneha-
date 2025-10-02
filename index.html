@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="pageTitle">A Special Message for Sneha Rathore</title> <meta name="description" content="A heartfelt and personal message for Sneha Rathore. Read this special proposal."> <style>
+    <title id="pageTitle">A Special Message for Sneha Rathore</title>
+    <meta name="description" content="A heartfelt and personal message for Sneha Rathore. Read this special proposal.">
+    <style>
         /* General Body Styles */
         body {
             margin: 0;
@@ -35,9 +37,16 @@
             transition: opacity 0.5s ease-in-out;
         }
 
+        .landing-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
         .heart-button {
-            width: 150px;
-            height: 150px;
+            /* NEW SIZE: 100px */
+            width: 100px;
+            height: 100px;
             background-color: #e21c3b; /* Red heart */
             position: relative;
             transform: rotate(-45deg);
@@ -46,26 +55,30 @@
             animation: beat 1.2s infinite; /* Heartbeat animation */
             transition: transform 0.2s ease-in-out;
             border-radius: 5%; /* Make it heart before pseudo-elements */
+            margin-bottom: 20px; /* Space between heart and text */
         }
 
         .heart-button::before,
         .heart-button::after {
+            /* NEW SIZE: 100px */
             content: '';
-            width: 150px;
-            height: 150px;
+            width: 100px;
+            height: 100px;
             background-color: #e21c3b;
             border-radius: 50%;
             position: absolute;
         }
 
         .heart-button::before {
-            top: -75px;
+            /* ADJUSTED POSITIONING: -50px (half of 100px) */
+            top: -50px;
             left: 0;
         }
 
         .heart-button::after {
+            /* ADJUSTED POSITIONING: 50px (half of 100px) */
             top: 0;
-            left: 75px;
+            left: 50px;
         }
 
         .heart-button:active {
@@ -86,22 +99,17 @@
         }
 
         .click-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(45deg); /* Counter-rotate text */
             color: white;
-            font-size: 20px;
+            font-size: 24px;
             font-weight: bold;
-            pointer-events: none; /* Make sure text doesn't interfere with click */
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             animation: pulseText 1.2s infinite;
         }
 
         @keyframes pulseText {
-            0% { transform: translate(-50%, -50%) rotate(45deg) scale(1); }
-            50% { transform: translate(-50%, -50%) rotate(45deg) scale(1.05); }
-            100% { transform: translate(-50%, -50%) rotate(45deg) scale(1); }
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
         /* Page 2: Proposal Page Styles */
@@ -129,12 +137,11 @@
             animation: fadeIn 1.5s ease-out;
             font-family: 'Georgia', serif;
             color: #4a4a4a;
-            /* Added for top alignment */
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* Align content to the top */
-            height: auto; /* Allow height to adjust to content */
-            overflow-y: auto; /* Add scroll if content overflows */
+            justify-content: flex-start;
+            height: auto;
+            overflow-y: auto;
         }
 
         #proposalPage h1 {
@@ -147,26 +154,23 @@
         #proposalPage p {
             font-size: 1.8em;
             line-height: 1.4;
-            margin-bottom: 1em; /* Adjusted margin for better flow */
+            margin-bottom: 1em;
             color: #555;
         }
 
-        /* Specifically target the first paragraph to remove its top margin */
         #proposalPage .message-box p:first-of-type {
             margin-top: 0;
         }
 
-        /* Adjust the last paragraph's margin before buttons to maintain spacing */
         #proposalPage .message-box p:last-of-type {
              margin-bottom: 30px;
         }
-
 
         .buttons-container {
             display: flex;
             gap: 20px;
             justify-content: center;
-            margin-top: auto; /* Push buttons to the bottom if content is short */
+            margin-top: auto;
         }
 
         .button {
@@ -183,11 +187,11 @@
         }
 
         .button.yes {
-            background-color: #28a745; /* Green for Yes */
+            background-color: #28a745;
         }
 
         .button.no {
-            background-color: #dc3545; /* Red for No */
+            background-color: #dc3545;
         }
 
         .button:hover {
@@ -197,7 +201,7 @@
 
         /* Page 3: Yes/No Result Pages */
         #yesPage, #noPage {
-            display: none; /* Hidden by default */
+            display: none;
             flex-direction: column;
             justify-content: center;
             align-items: center;
@@ -211,13 +215,13 @@
         }
 
         #yesPage {
-            background: linear-gradient(to right, #83a4d4, #b6fbff); /* Joyful blue gradient */
-            font-family: 'Comic Sans MS', cursive, sans-serif; /* A bit more playful for happiness */
+            background: linear-gradient(to right, #83a4d4, #b6fbff);
+            font-family: 'Comic Sans MS', cursive, sans-serif;
             color: #333;
         }
 
         #noPage {
-            background: linear-gradient(to right, #ece9e6, #ffffff); /* Soft, neutral background */
+            background: linear-gradient(to right, #ece9e6, #ffffff);
             font-family: 'Open Sans', sans-serif;
             color: #666;
         }
@@ -242,7 +246,7 @@
         }
 
         #yesPage h1 {
-            color: #28a745; /* Green for success */
+            color: #28a745;
             font-size: 3.5em;
             margin-bottom: 25px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
@@ -292,7 +296,6 @@
         .confetti:nth-child(4n) { background-color: #f00; animation-delay: 1.5s; }
         .confetti:nth-child(5n) { background-color: #00f; animation-delay: 2s; }
         .confetti:nth-child(6n) { background-color: #f0f; animation-delay: 2.5s; }
-        /* Add more as needed, adjusting left position */
         .confetti:nth-child(1) { left: 10%; }
         .confetti:nth-child(2) { left: 20%; }
         .confetti:nth-child(3) { left: 30%; }
@@ -324,33 +327,27 @@
 <body>
 
     <div id="landingPage">
-        <div class="heart-button" onclick="showPage('proposalPage')">
-            <span class="click-text"></span>
+        <div class="landing-content">
+            <div class="heart-button" onclick="showPage('proposalPage')"></div>
+            <span class="click-text">Click to Open</span>
         </div>
     </div>
 
     <div id="proposalPage">
         <div class="message-box">
-            <h1 id="proposalHeading"> <br>Hi Sneha,<br> I Am Sagar,</h1>
+            <h1 id="proposalHeading">My Dearest Sneha,</h1>
             <p id="proposalMessage">
-               <br> So from very starting<br>
-Pata hai maine tumhe<br> sabse pahle nursary class me dekha tha<br>
- Uss din se tum mere liye sab kuch ban gayi,<br>
-Tumhare bate ,tumhara nature,
-Tumhara saaf maan<br>
-Or tumhare sari qualities ne<br> mujhe tumhara divana bana diya<br><br>
-Me har pal tumhare bare me sochta rahata tha<br>ki tumhe apne Dil ki baat keh du,<br> par darta tha ki tum mujhse dur na hojao.<br>
-Pata nahi ki tume mujhko jana ya nahi<br>
-Par mere samne tumhare hi tasveer rehte hai, har saas pe tumhara naam leta hu<br><br>
-Aab bas tumse ye kehna chahata hu<br> 
-दिल मेरा तुमसे प्यार करना चाहता है,दबी हुई मोहब्बत का इजहार करना चाहता है।<br>जब से देखा है मैंने तुझे ओ सनम,ये दिल सिर्फ तुम्हारा दीदार करना चाहता है।<br>
-                
-                So here I am, standing with a full heart, asking just one simple, sincere question:<br><br>
-                💖 Will you be mine? 💖<br><br>
-                Not just for today, but for all the adventures to come—<br>
-                For late-night talks, for shared dreams, for silly moments and serious ones too.<br><br>
-                Because you’re not just someone I like...<br>
-                You’re someone I want to create memories with.
+               <br> From the moment I first saw you, you brought a light into my life that I never knew I was missing. Every shared laugh, every thoughtful conversation, every moment we spend together feels like a chapter in a beautiful, unfolding story.<br><br>
+               You are the most kind, intelligent, and wonderful person I have ever known. Being with you makes me feel like the luckiest person in the world, and I cherish the depth of feeling I have for you.<br><br>
+               I don't want to imagine a future without you by my side. I want to be the one who makes you smile every morning, who supports your dreams, and who loves you unconditionally for the rest of our lives.<br><br>
+               My heart is completely and absolutely yours.<br><br>
+               I am not asking just for a date, but for a future, for a lifetime.<br><br>
+               So, there is only one question left to ask...<br><br>
+                💖 Will you be my 
+                Life Partner? 💖<br><br>
+                Waiting eagerly for your answer.<br><br>
+                With all my love,<br>
+                Sagar
             </p>
             <div class="buttons-container">
                 <button class="button yes" onclick="showPage('yesPage')">Yes!</button>
@@ -390,7 +387,7 @@ Aab bas tumse ye kehna chahata hu<br>
         function showPage(pageId) {
             const pages = ['landingPage', 'proposalPage', 'yesPage', 'noPage'];
             const pageTitles = {
-                'landingPage': 'A Special Message for Sneha Rathore', // Consistent with initial title
+                'landingPage': 'A Special Message for Sneha Rathore',
                 'proposalPage': 'My Question for You, Sneha',
                 'yesPage': 'Yay! So Happy!',
                 'noPage': 'Understood'
@@ -400,11 +397,11 @@ Aab bas tumse ye kehna chahata hu<br>
                 const page = document.getElementById(id);
                 if (page) {
                     if (id === pageId) {
-                        page.style.display = 'flex'; // Show the target page
-                        setTimeout(() => page.style.opacity = 1, 10); // Fade in
+                        page.style.display = 'flex';
+                        setTimeout(() => page.style.opacity = 1, 10);
                     } else {
-                        page.style.opacity = 0; // Fade out other pages
-                        setTimeout(() => page.style.display = 'none', 500); // Hide after fade
+                        page.style.opacity = 0;
+                        setTimeout(() => page.style.display = 'none', 500);
                     }
                 }
             });
